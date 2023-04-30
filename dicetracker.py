@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/home/anubitux/Tools/AddressGen/DiceTracker.py/dtve/bin/python3
 
 from hdwallet import HDWallet
 from hdwallet.symbols import BTC, ETH, LTC, BCH, BSV, DASH, ZEC, DOGE, BTCTEST
@@ -7,6 +7,7 @@ import qrcode
 import os
 import pdfkit
 from os.path import exists
+import weasyprint
 
 
 class color:
@@ -82,6 +83,9 @@ print(color.YELLOW + 'Welcome to dice tracker!' + color.END)
 print('This tool derives private keys and public addresses from 256 bits binary keys')
 print('Key can be pasted by the user (in binary or as the result of dice rolls) or can be inserted tracking the result of 256 dice rolls')
 
+# Changes working directory
+os.chdir('/home/anubitux/Documents/')
+
 # Stores the binary string
 dicestr = ''
 print(color.GREEN + '\nDo you want to paste a binary key or the result of previous dice rolls?(y/n)' + color.END)
@@ -121,22 +125,24 @@ if ans == 'y' or ans == 'Y':
 # user wants to track dice rolls
 elif ans == 'n' or ans == 'N':
     # input result of dice rolls
-    print(color.GREEN + "Let's go! This may take a while" + color.END)
-    print('Simply type the result of each time you roll your dice')
+    print(color.GREEN + "Let's go! It may take some time" + color.END)
+    print('Simply tipe the result of each time you roll your dice')
     dicerolls = 0
     while dicerolls < 256:
         res = input(f'insert {dicerolls +1} number: ')
-        if res.isdigit():
+        if res == '':
+            print(color.RED + 'Unallowed input!' + color.END)
+        elif res.isalpha():
+            print(color.RED + 'Unallowed input!' + color.END)
+        else:
             res = int(res)
             if res > 6 or res < 1 or res == '':
-                print(color.RED + 'Unallowed input! Only 6 faces dices are supported' + color.END)
+                print(color.RED + 'Unallowed input!' + color.END)
             else:
                 res = res % 2
                 res = str(res)
                 dicestr += res
                 dicerolls += 1
-        else:
-            print(color.RED + 'Unallowed input!' + color.END)
 
 # Printing the result of all the dice rolls
     print(color.DARKCYAN + '\nThis is your binary key:' + color.END)
@@ -314,9 +320,10 @@ else:
 ft.write('<p></p><p></p><p><em>Made with dicetracker.py<br>More info at https://anubitux.org</em></p>')
 ft.write('</body>')
 ft.close()
-pdfkit.from_file('PaperWallet/temp.html', 'PaperWallet/paperwallet.pdf', options={"enable-local-file-access": ""})
+
+pdfkit.from_file('/home/anubitux/Documents/PaperWallet/temp.html', '/home/anubitux/Documents/PaperWallet/paperwallet.pdf', options={"enable-local-file-access": ""})
 os.remove('PaperWallet/temp.html')
 
 if qr:
-    print(color. DARKCYAN + '\nYour paper wallet can be found in the PaperWallet directory in the DiceTracker.py folder' + color.END)
+    print(color. DARKCYAN + '\nYour paper wallet can be found in the PaperWallet directory in the Documents folder' + color.END)
 print('')
