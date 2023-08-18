@@ -1,4 +1,4 @@
-#!/home/anubitux/Tools/AddressGen/DiceTracker.py/dtve/bin/python3
+#!/home/anubitux/Tools/AddressGen/DiceTracker/dtve/bin/python3
 
 from hdwallet import HDWallet
 from hdwallet.symbols import BTC, ETH, LTC, BCH, BSV, DASH, ZEC, DOGE, BTCTEST
