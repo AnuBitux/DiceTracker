@@ -254,7 +254,7 @@ if coin_sel == 2:
 elif coin_sel == 1 or (coin_sel > 2 and coin_sel < 10):
     # Print WIF private key
     WIF_priv = hdwallet.wif()
-    print('Wallet Important Format private key: ', WIF_priv)
+    print('WIF private key: ', WIF_priv)
     if qr:
         makeqr(WIF_priv, 'private_key.png')
     addr1 = hdwallet.p2pkh_address()
