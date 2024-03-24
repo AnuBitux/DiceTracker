@@ -1,5 +1,3 @@
-#!/home/anubitux/Tools/AddressGen/DiceTracker/dtve/bin/python3
-
 from hdwallet import HDWallet
 from hdwallet.symbols import BTC, ETH, LTC, BCH, BSV, DASH, ZEC, DOGE, BTCTEST
 from monero.seed import Seed
@@ -84,7 +82,8 @@ print('This tool derives private keys and public addresses from 256 bits binary 
 print('Key can be pasted by the user (in binary or as the result of dice rolls) or can be inserted tracking the result of 256 dice rolls')
 
 # Changes working directory
-os.chdir('/home/anubitux/Documents/')
+user_folder = os.getlogin()
+os.chdir('/home/' + user_folder + '/Documents/')
 
 # Stores the binary string
 dicestr = ''
@@ -321,7 +320,7 @@ ft.write('<p></p><p></p><p><em>Made with dicetracker.py<br>More info at https://
 ft.write('</body>')
 ft.close()
 
-pdfkit.from_file('/home/anubitux/Documents/PaperWallet/temp.html', '/home/anubitux/Documents/PaperWallet/paperwallet.pdf', options={"enable-local-file-access": ""})
+pdfkit.from_file('/home/' + user_folder + '/Documents/PaperWallet/temp.html', '/home/' + user_folder + '/Documents/PaperWallet/paperwallet.pdf', options={"enable-local-file-access": ""})
 os.remove('PaperWallet/temp.html')
 
 if qr:
