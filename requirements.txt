@@ -4,3 +4,4 @@ pdfkit
 qrcode
 Image
 weasyprint
+bitcash
