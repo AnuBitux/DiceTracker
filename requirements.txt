@@ -5,3 +5,4 @@ qrcode
 Image
 weasyprint
 bitcash
+pillow
